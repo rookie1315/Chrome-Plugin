@@ -1,0 +1,3 @@
+server/.env
+server/.server.pid
+server/node_modules/
