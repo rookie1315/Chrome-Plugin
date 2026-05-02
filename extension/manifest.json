@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Bilibili Live English Captions",
+  "version": "0.1.0",
+  "description": "Generate live English captions for Bilibili videos.",
+  "permissions": [
+    "activeTab",
+    "offscreen",
+    "scripting",
+    "storage",
+    "tabCapture"
+  ],
+  "host_permissions": [
+    "https://www.bilibili.com/video/*",
+    "http://localhost:3000/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://localhost:3000 ws://localhost:3000"
+  },
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.bilibili.com/video/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Toggle Bilibili live captions"
+  }
+}
